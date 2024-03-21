@@ -27,7 +27,7 @@ public static class ContainerTypeService
             "ref" => ContainerType.Refrigerated,
             "liq" => ContainerType.Liquid,
             "lqh" => ContainerType.LiquidHazardous,
-            _ => throw new ArgumentOutOfRangeException()
+            _ => throw new ArgumentOutOfRangeException(nameof(type), type, "Unexpected Container Type.")
         };
     }
 }
