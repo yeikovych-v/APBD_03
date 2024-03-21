@@ -11,8 +11,9 @@ public static class SerialNumGeneratorService
         if (!_lastSerialNums.ContainsKey(type)) InitContainerType(type);
         
         int lastVal = _lastSerialNums[type];
+        _lastSerialNums[type]++;
         
-        return lastVal++;
+        return lastVal;
     }
 
     private static void InitContainerType(ContainerType type)
