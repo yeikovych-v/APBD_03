@@ -1,4 +1,4 @@
-﻿APBD_03.csproj
+﻿*.csproj
 *.dll
 *.exe
 *.pdb
