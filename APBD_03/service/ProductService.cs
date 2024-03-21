@@ -44,4 +44,13 @@ public static class ProductService
     {
         return _productTemps[product];
     }
+
+    public static Product GenerateRandomProduct()
+    {
+        Random random = new Random();
+        
+        int randomIndex = random.Next(_productTemps.Count);
+
+        return new List<Product>(_productTemps.Keys)[randomIndex];
+    }
 }
