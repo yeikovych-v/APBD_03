@@ -198,16 +198,16 @@ public static class ConsoleCommandsController
         }
 
         var ship = ShipRepository.FindById(shipId);
-        if (ship.ContainerCount() != 0)
+        if (ship.GetContainerCount() != 0)
         {
-            Console.WriteLine($"Available IDs are from 0 to {ship.ContainerCount() - 1}");
+            Console.WriteLine($"Available IDs are from 0 to {ship.GetContainerCount() - 1}");
             Console.Write("Type container id to delete: ");
             var idStr = Console.ReadLine();
             while (string.IsNullOrEmpty(idStr) || !CalculationService.IsInt(idStr) ||
                    !ContainerRepository.HasWithId(int.Parse(idStr)) || !ship.Contains(int.Parse(idStr)))
             {
                 Console.WriteLine("Given Id is empty/not a number/given container does not exist.");
-                Console.WriteLine($"Available IDs are from 0 to {ship.ContainerCount() - 1}");
+                Console.WriteLine($"Available IDs are from 0 to {ship.GetContainerCount() - 1}");
                 Console.Write("Type container id to delete: ");
                 idStr = Console.ReadLine();
             }
@@ -230,16 +230,16 @@ public static class ConsoleCommandsController
 
         var from = ShipRepository.FindById(shipFrom);
         var to = ShipRepository.FindById(shipTo);
-        if (from.ContainerCount() != 0)
+        if (from.GetContainerCount() != 0)
         {
-            Console.WriteLine($"Available IDs are from 0 to {from.ContainerCount() - 1}");
+            Console.WriteLine($"Available IDs are from 0 to {from.GetContainerCount() - 1}");
             Console.Write("Type container id to transfer: ");
             var idStr = Console.ReadLine();
             while (string.IsNullOrEmpty(idStr) || !CalculationService.IsInt(idStr) ||
                    !ContainerRepository.HasWithId(int.Parse(idStr)) || !from.Contains(int.Parse(idStr)))
             {
                 Console.WriteLine("Given Id is empty/not a number/given container does not exist.");
-                Console.WriteLine($"Available IDs are from 0 to {from.ContainerCount() - 1}");
+                Console.WriteLine($"Available IDs are from 0 to {from.GetContainerCount() - 1}");
                 Console.Write("Type container id to transfer: ");
                 idStr = Console.ReadLine();
             }
