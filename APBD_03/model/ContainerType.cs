@@ -4,5 +4,6 @@ public enum ContainerType
 {
     Refrigerated,
     Gas,
-    Liquid
+    Liquid,
+    LiquidHazardous
 }
