@@ -46,6 +46,13 @@ public class Ship(decimal maxSpeedKnots, int maxNumContainers, decimal maxWeight
         ShipCargo.Remove(container);
         Console.WriteLine(container + " <== Was removed from the ship.");
     }
+    
+    public void Remove(int id)
+    {
+        var toRemove = ShipCargo[id];
+        ShipCargo.Remove(toRemove);
+        Console.WriteLine(toRemove + " <== Was removed from the ship.");
+    }
 
     public bool Replace(int index, Container container)
     {
@@ -73,6 +80,11 @@ public class Ship(decimal maxSpeedKnots, int maxNumContainers, decimal maxWeight
         return ShipCargo.Contains(container);
     }
     
+    public bool Contains(int id)
+    {
+        return id >= 0 && ShipCargo.Count >= id + 1;
+    }
+    
     public override string ToString()
     {
         StringBuilder sb = new StringBuilder();
@@ -88,5 +100,15 @@ public class Ship(decimal maxSpeedKnots, int maxNumContainers, decimal maxWeight
         }
 
         return sb.ToString();
+    }
+
+    public int GetContainerCount()
+    {
+        return ShipCargo.Count;
+    }
+
+    public Container GetContainerById(int id)
+    {
+        return ShipCargo[id];
     }
 }
