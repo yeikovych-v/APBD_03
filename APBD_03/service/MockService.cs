@@ -75,4 +75,29 @@ public class MockService
             ProductService.GetSuitableTempForProduct(Product.IceCream)));
         return refrigerator;
     }
+
+    public static Ship GenerateRandomShip()
+    { 
+        var random = new Random();
+        
+        var maxSpeedKnots = random.Next(15, 62); 
+        var maxNumContainers = random.Next(50, 526); 
+        var maxWeightContainersTons = Convert.ToDecimal(random.NextDouble() * (5461 - 981) + 981);
+
+        return new Ship(maxSpeedKnots, maxNumContainers, maxWeightContainersTons);
+    }
+
+    public static GasContainer GenerateRandomGasContainer()
+    {
+        var random = new Random();
+        
+        var heightCm = random.Next(78, 146); 
+        var weightKg = random.Next(164, 1025); 
+        var depthCm = random.Next(33, 156); 
+        var maxPayloadKg = random.Next(394, 981);
+        
+        var pressureAtm = Convert.ToDecimal(random.NextDouble() * (9.22 - 0.56) + 0.56); 
+        
+        return new GasContainer(heightCm, weightKg, depthCm, maxPayloadKg, pressureAtm);
+    }
 }
