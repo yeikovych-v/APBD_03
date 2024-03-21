@@ -186,7 +186,20 @@ public static class ConsoleCommandsController
             return;
         }
 
-        ShipRepository.FindById(shipId).Add(MockService.GenerateRandomGasContainer());
+        var ship = ShipRepository.FindById(shipId);
+        Console.WriteLine("Types(case does not matter): [GAS], [REF], [LIQ], [LQH].");
+        Console.Write("Type container type to create: ");
+        var conType = Console.ReadLine();
+        while (string.IsNullOrEmpty(conType) || !ContainerTypeService.IsValidContainerType(conType))
+        {
+            Console.WriteLine("Given container type is incorrect. ");
+            Console.WriteLine("Types(case does not matter): [GAS], [REF], [LIQ], [LQH].");
+            Console.Write("Type container type to create: ");
+            conType = Console.ReadLine();
+        }
+
+        var type = ContainerTypeService.Parse(conType);
+        ship.Add(MockService.GenerateRandomContainer(type));
     }
 
     private static void ExecuteDelCon(int shipId)
@@ -292,14 +305,12 @@ public static class ConsoleCommandsController
                 _ => false
             };
         }
-        catch (IndexOutOfRangeException _)
+        catch (IndexOutOfRangeException)
         {
-            Console.WriteLine(_.StackTrace);
             return false;
         }
-        catch (FormatException _)
+        catch (FormatException)
         {
-            Console.WriteLine(_.StackTrace);
             return false;
         }
     }
