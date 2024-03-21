@@ -20,6 +20,7 @@ public class ContainerSerialNumber(ContainerType type)
             ContainerType.Refrigerated => "R",
             ContainerType.Gas => "G",
             ContainerType.Liquid => "L",
+            ContainerType.LiquidHazardous => "LH",
             _ => throw new ArgumentOutOfRangeException()
         };
     }
