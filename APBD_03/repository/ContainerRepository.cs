@@ -1,4 +1,5 @@
 ﻿using APBD_03.model.containers;
+using APBD_03.service;
 
 namespace APBD_03.model.repository;
 
@@ -29,5 +30,10 @@ public static class ContainerRepository
     public static List<Container> FindAll()
     {
         return _containers;
+    }
+
+    public static bool HasWithId(int id)
+    {
+        return CalculationService.IsIdInListRange(id, _containers.Count);
     }
 }
