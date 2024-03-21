@@ -1,1 +1,6 @@
 ﻿APBD_03.csproj
+*.dll
+*.exe
+*.pdb
+*.cache
+*.cs
