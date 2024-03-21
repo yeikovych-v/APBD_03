@@ -100,4 +100,54 @@ public class MockService
         
         return new GasContainer(heightCm, weightKg, depthCm, maxPayloadKg, pressureAtm);
     }
+
+    public static Container GenerateRandomContainer(ContainerType type)
+    {
+        return type switch
+        {
+            ContainerType.Gas => GenerateRandomGasContainer(),
+            ContainerType.Liquid => GenerateRandomLiquidContainer(),
+            ContainerType.Refrigerated => GenerateRandomRefrigeratedContainer(),
+            ContainerType.LiquidHazardous => GenerateRandomLiquidHazardousContainer(),
+            _ => throw new ArgumentOutOfRangeException(nameof(type), type, "Unexpected Container Type.")
+        };
+    }
+
+    private static LiquidContainer GenerateRandomLiquidContainer()
+    {
+        var random = new Random();
+        
+        var heightCm = random.Next(78, 146); 
+        var weightKg = random.Next(164, 1025); 
+        var depthCm = random.Next(33, 156); 
+        var maxPayloadKg = random.Next(394, 981);
+
+        return new LiquidContainer(heightCm, weightKg, depthCm, maxPayloadKg);
+    }
+
+    private static RefrigeratorContainer GenerateRandomRefrigeratedContainer()
+    {
+        var random = new Random();
+        
+        var heightCm = random.Next(78, 146); 
+        var weightKg = random.Next(164, 1025); 
+        var depthCm = random.Next(33, 156); 
+        var maxPayloadKg = random.Next(394, 981);
+        var product = ProductService.GenerateRandomProduct();
+        var temp = ProductService.GetSuitableTempForProduct(product);
+        
+        return new RefrigeratorContainer(heightCm, weightKg, depthCm, maxPayloadKg, product, temp);
+    }
+
+    private static LiquidHazardousContainer GenerateRandomLiquidHazardousContainer()
+    {
+        var random = new Random();
+        
+        var heightCm = random.Next(78, 146); 
+        var weightKg = random.Next(164, 1025); 
+        var depthCm = random.Next(33, 156); 
+        var maxPayloadKg = random.Next(394, 981);
+
+        return new LiquidHazardousContainer(heightCm, weightKg, depthCm, maxPayloadKg);
+    }
 }
